@@ -65,7 +65,7 @@ log:
   type: match
   match: [info]
   color: cyan
-- target: word
+- target: line
   type: match
   match: [warn]
   color: yellow
