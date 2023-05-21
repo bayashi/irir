@@ -57,7 +57,7 @@ You can see logs:
 
 ### irir_rule.yaml
 
-First element is rule name:
+First key `log` is rule name that is specified in command line:
 
 ```yaml
 log:
@@ -75,9 +75,9 @@ log:
   color: red
 ```
 
-above config is for `log` rule. And it has 3 ways to color.
+above config is for `log` rule. And it has 3 ways to color as list.
 
-### The rule to color
+### Each rule to color
 
 ```
 - target: word
