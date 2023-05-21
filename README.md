@@ -27,18 +27,18 @@ then, below is a coloring rule file for `irir` in YAML.
 $ cat ~/.config/irir/irir_rule.yaml
 ---
 log:
-- target: word
-  type: match
+- type: match
   match: [info]
   color: cyan
-- target: word
-  type: match
+  target: word
+- type: match
   match: [warn]
   color: yellow
-- target: line
-  type: match
+  target: word
+- type: match
   match: [error]
   color: red
+  target: line
 ```
 
 Then, you can filter the log file by `irir` with `log` rule.
@@ -61,18 +61,18 @@ First key `log` is rule name that is specified in command line:
 
 ```yaml
 log:
-- target: word
-  type: match
+- type: match
   match: [info]
   color: cyan
-- target: line
-  type: match
+  target: word
+- type: match
   match: [warn]
   color: yellow
-- target: line
-  type: match
+  target: line
+- type: match
   match: [error]
   color: bg_red
+  target: line
 ```
 
 above config is for `log` rule. And it has 3 ways to color as list.
@@ -80,16 +80,16 @@ above config is for `log` rule. And it has 3 ways to color as list.
 ### Each rule to color
 
 ```
-- target: word
-  type: match
+- type: match
   match: [info]
   color: cyan
+  target: word
 ```
 
-* `target`: `word` or `line`. This specifies a scope of coloring.
-* `type`: `match`, `prefix`, `suffix` or `regexp`. This specifies how to match. If `target` is `word`, then you can use only `match` or `regexp`.
+* `type`: `match`, `prefix`, `suffix` or `regexp`. This specifies how to match. If `target` value is `word`, then you can use only `match` or `regexp`.
 * `match`: This is a string or a regexp string to match.
 * `color`: specific color. See [the palette](https://github.com/bayashi/irir/blob/main/color_palette.go)
+* `target`: `word` or `line`. This specifies a scope of coloring.
 
 ## Installation
 
