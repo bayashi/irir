@@ -137,8 +137,10 @@ gotest:
   target: line
 ```
 
+This is helpful on wrapping `go test` by `make`.
+
 ```sh
-$ go test -v ./... | irir gotest
+$ make test | irir gotest
 ```
 
 ![colored test result](https://user-images.githubusercontent.com/42190/239734820-f18006ce-6a9c-43b8-aaf0-c4f8ebd7a57b.png)
