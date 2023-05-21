@@ -1,0 +1,105 @@
+package main
+
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+	"regexp"
+	"strings"
+
+	"github.com/adrg/xdg"
+	yaml "gopkg.in/yaml.v3"
+)
+
+const (
+	irir = "irir"
+)
+
+var (
+	irirDir         = irir
+	irirFile        = irir + "_rule"
+	irirConfigFiles = [2]string{irirFile + ".yaml", irirFile + ".yml"}
+)
+
+const (
+	TARGET_WORD = "word"
+	TARGET_LINE = "line"
+
+	TYPE_MATCH  = "match"
+	TYPE_PREFIX = "prefix"
+	TYPE_SUFFIX = "suffix"
+	TYPE_REGEXP = "regexp"
+)
+
+type Rule struct {
+	Target string         // word or line
+	Type   string         // match, prefix, suffix, regexp
+	Match  string         // Matching string/regexp
+	Color  string         // color
+	Regexp *regexp.Regexp // If Type would be "regexp", then the compiled regexp is set here
+}
+
+func loadRule(ruleName string) ([]*Rule, error) {
+	bytes, err := loadCfg()
+	if err != nil {
+		return []*Rule{}, err
+	}
+
+	cfg, err2 := parseCfg(bytes)
+	if err2 != nil {
+		return []*Rule{}, err
+	}
+
+	r, isExists := cfg[ruleName]
+	if !isExists {
+		return []*Rule{}, fmt.Errorf("'%s' doesn't exists in config", ruleName)
+	}
+
+	for i, rr := range r {
+		if rr.Type == TYPE_REGEXP {
+			r[i].Regexp = regexp.MustCompile(rr.Match)
+		}
+		if _, ok := palette[strings.ToLower(rr.Color)]; !ok {
+			r[i].Color = "error"
+		} else {
+			r[i].Color = strings.ToLower(rr.Color)
+		}
+	}
+
+	//fmt.Printf("%#v\n", r[0])
+
+	return r, nil
+}
+
+func parseCfg(bytes []byte) (map[string][]*Rule, error) {
+	var result map[string][]*Rule
+	err := yaml.Unmarshal(bytes, &result)
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
+}
+
+func loadCfg() ([]byte, error) {
+	expectedCfgFiles := []string{}
+	for _, cfgFile := range irirConfigFiles {
+		cfgFullPath := fullPath(cfgFile)
+		expectedCfgFiles = append(expectedCfgFiles, cfgFullPath)
+		if _, err := os.Stat(cfgFullPath); err != nil {
+			continue
+		}
+		bytes, err := os.ReadFile(cfgFullPath)
+		if err != nil {
+			continue
+		}
+
+		return bytes, nil
+	}
+
+	return nil, fmt.Errorf("could not read rule config file %s", strings.Join(expectedCfgFiles, ", "))
+}
+
+func fullPath(fileName string) string {
+	return filepath.Join(xdg.ConfigHome, irirDir, fileName)
+}

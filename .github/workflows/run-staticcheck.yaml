@@ -1,0 +1,49 @@
+name: staticcheck
+
+on:
+  push:
+    branches:
+      - '*'
+    tags-ignore:
+      - '*'
+    paths-ignore:
+      - '**/*.md'
+      - '**/.gitignore'
+  pull_request:
+    paths-ignore:
+      - '**/*.md'
+      - '**/.gitignore'
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os:  ["ubuntu-latest"]
+        go:  ["1.19"]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup go${{ matrix.go }}
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Install dependencies
+        run: go get .
+
+      - name: Run vet
+        run: go vet -v ./...
+
+      - name: Setup staticcheck
+        uses: dominikh/staticcheck-action@v1.3.0
+        with:
+          version: "2022.1.3"
+          install-go: false
+          min-go-version: ${{ matrix.go }}
+          cache-key: ${{ matrix.os }}-${{ matrix.go }}
+
+      - name: Run staticcheck
+        run: staticcheck ./...
