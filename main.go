@@ -12,7 +12,7 @@ import (
 func main() {
 	err := run()
 	if err != nil {
-		putErr(fmt.Sprintf("Err: %s", err))
+		putErr(fmt.Sprintf("Err %s: %s", irir, err.Error()))
 		os.Exit(exitErr)
 	}
 
@@ -33,12 +33,9 @@ func run() error {
 
 	s := bufio.NewScanner(os.Stdin)
 	for s.Scan() {
-		in := s.Bytes()
-		result, err := process(in, rule)
+		result, err := process(s.Bytes(), rule)
 		if err != nil {
-			os.Stderr.Write([]byte(err.Error()))
-			os.Stderr.WriteString("\n")
-			os.Exit(exitErr)
+			return err
 		}
 		os.Stdout.Write(result)
 		os.Stdout.WriteString("\n")

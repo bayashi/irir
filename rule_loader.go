@@ -11,9 +11,7 @@ import (
 	yaml "gopkg.in/yaml.v3"
 )
 
-const (
-	irir = "irir"
-)
+const irir = "irir"
 
 var (
 	irirDir         = irir
@@ -32,10 +30,10 @@ const (
 )
 
 type Rule struct {
-	Target string         // word or line
 	Type   string         // match, prefix, suffix, regexp
 	Match  string         // Matching string/regexp
 	Color  string         // color
+	Target string         // word or line
 	Regexp *regexp.Regexp // If Type would be "regexp", then the compiled regexp is set here
 }
 
@@ -65,8 +63,6 @@ func loadRule(ruleName string) ([]*Rule, error) {
 			r[i].Color = strings.ToLower(rr.Color)
 		}
 	}
-
-	//fmt.Printf("%#v\n", r[0])
 
 	return r, nil
 }
