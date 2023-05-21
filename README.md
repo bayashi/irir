@@ -72,7 +72,7 @@ log:
 - target: line
   type: match
   match: [error]
-  color: red
+  color: bg_red
 ```
 
 above config is for `log` rule. And it has 3 ways to color as list.
