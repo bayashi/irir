@@ -33,7 +33,7 @@ func process(origLine []byte, rule []*Rule) ([]byte, error) {
 func processWord(line []byte, r *Rule) ([]byte, error) {
 	switch r.Type {
 	case TYPE_MATCH:
-		if strings.Contains(string(line), r.Match) {
+		if strings.Contains(strings.TrimSpace(string(line)), r.Match) {
 			coloredMatch := palette[r.Color].Sprintf(r.Match)
 			lineString := strings.ReplaceAll(string(line), r.Match, coloredMatch)
 			byteString := []byte(lineString)
@@ -52,7 +52,7 @@ func processWord(line []byte, r *Rule) ([]byte, error) {
 func processLine(line []byte, r *Rule) ([]byte, error) {
 	switch r.Type {
 	case TYPE_MATCH:
-		if strings.Contains(string(line), r.Match) {
+		if strings.Contains(strings.TrimSpace(string(line)), r.Match) {
 			coloredLine := palette[r.Color].Sprintf(string(line))
 			return []byte(coloredLine), nil
 		}
@@ -62,12 +62,12 @@ func processLine(line []byte, r *Rule) ([]byte, error) {
 			return []byte(coloredLine), nil
 		}
 	case TYPE_PREFIX:
-		if strings.HasPrefix(string(line), r.Match) {
+		if strings.HasPrefix(strings.TrimSpace(string(line)), r.Match) {
 			coloredLine := palette[r.Color].Sprintf(string(line))
 			return []byte(coloredLine), nil
 		}
 	case TYPE_SUFFIX:
-		if strings.HasSuffix(string(line), r.Match) {
+		if strings.HasSuffix(strings.TrimSpace(string(line)), r.Match) {
 			coloredLine := palette[r.Color].Sprintf(string(line))
 			return []byte(coloredLine), nil
 		}

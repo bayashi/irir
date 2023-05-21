@@ -64,6 +64,21 @@ func Test_process(t *testing.T) {
 			expect: []byte("\x1b[91mFoo Bar Baz\x1b[0m"),
 		},
 		{
+			name: "prefix",
+			args: args{
+				origLine: []byte("    Foo Bar Baz"),
+				rule: []*Rule{
+					&Rule{
+						Target: "line",
+						Type:   "prefix",
+						Match:  "Foo",
+						Color:  "red",
+					},
+				},
+			},
+			expect: []byte("\x1b[91m    Foo Bar Baz\x1b[0m"),
+		},
+		{
 			name: "regexp",
 			args: args{
 				origLine: []byte("Foo Bar Baz"),
