@@ -34,7 +34,7 @@ func Test_process(t *testing.T) {
 			expect: []byte("Foo \x1b[91mBar\x1b[0m Baz"),
 		},
 		{
-			name: "word",
+			name: "word of a part",
 			args: args{
 				origLine: []byte("Foo Bar Baz"),
 				rule: []*Rule{
