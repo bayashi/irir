@@ -91,6 +91,59 @@ above config is for `log` rule. And it has 3 ways to color as list.
 * `color`: specific color. See [the palette](https://github.com/bayashi/irir/blob/main/color_palette.go)
 * `target`: `word` or `line`. This specifies a scope of coloring.
 
+### Another example
+
+To add colors for `go test` result.
+
+`irir_rule.yaml` is like below.
+
+```yaml
+gotest:
+- type: prefix
+  match: "--- PASS"
+  color: green
+  target: line
+- type: prefix
+  match: "ok"
+  color: green
+  target: line
+- type: prefix
+  match: "PASS"
+  color: green
+  target: line
+- type: prefix
+  match: "--- FAIL"
+  color: red
+  target: line
+- type: prefix
+  match: "FAIL"
+  color: red
+  target: line
+- type: prefix
+  match: "--- SKIP"
+  color: dark_yellow
+  target: line
+- type: match
+  match: "=== RUN"
+  color: gray
+  target: line
+- target: line
+  type: match
+  match: "=== CONT"
+  color: gray
+- type: match
+  match: "=== PAUSE"
+  color: gray
+  target: line
+```
+
+```sh
+$ go test -v ./... | irir gotest
+```
+
+![colored test result](https://user-images.githubusercontent.com/42190/239734820-f18006ce-6a9c-43b8-aaf0-c4f8ebd7a57b.png)
+
+
 ## Installation
 
 ```cmd
