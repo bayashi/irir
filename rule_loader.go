@@ -66,8 +66,6 @@ func loadRule(ruleName string) ([]*Rule, error) {
 		}
 	}
 
-	//fmt.Printf("%#v\n", r[0])
-
 	return r, nil
 }
 
