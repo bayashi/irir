@@ -8,13 +8,20 @@ import (
 var zeroByte = []byte("")
 
 func process(origLine []byte, rule []*Rule) ([]byte, error) {
+	var err error
 	line := origLine
 	for _, r := range rule {
 		switch r.Target {
 		case TARGET_WORD:
-			line, _ = processWord(line, r)
+			line, err = processWord(line, r)
+			if err != nil {
+				return zeroByte, err
+			}
 		case TARGET_LINE:
-			line, _ = processLine(line, r)
+			line, err = processLine(line, r)
+			if err != nil {
+				return zeroByte, err
+			}
 		default:
 			return zeroByte, fmt.Errorf("wrong target %s", r.Target)
 		}

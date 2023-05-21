@@ -11,9 +11,7 @@ import (
 	yaml "gopkg.in/yaml.v3"
 )
 
-const (
-	irir = "irir"
-)
+const irir = "irir"
 
 var (
 	irirDir         = irir
