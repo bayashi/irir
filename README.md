@@ -7,8 +7,6 @@
 
 `irir` is a command that provides a filter to add colors for text lines generically from a YAML configuration file easily.
 
-NOTE that irir is still alpha quality. Not test enough. But feedback welcome :-D
-
 ## Usage
 
 This is a log file I want to add colors.
