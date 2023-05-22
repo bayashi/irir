@@ -40,7 +40,8 @@ func processWord(line []byte, r *Rule) ([]byte, error) {
 			return byteString, nil
 		}
 	case TYPE_REGEXP:
-		coloredMatch := palette[r.Color].Sprintf(r.Match)
+		_, repl := r.re()
+		coloredMatch := palette[r.Color].Sprintf(repl)
 		return r.Regexp.ReplaceAll(line, []byte(coloredMatch)), nil
 	default:
 		return zeroByte, fmt.Errorf("wrong type %s for target=%s", r.Type, r.Target)
