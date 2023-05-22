@@ -21,10 +21,15 @@ type options struct {
 func parseArgs() *options {
 	o := &options{}
 
-	var flagHelp bool
-	var flagVersion bool
+	var (
+		flagHelp       bool
+		flagVersion    bool
+		flagDumpSchema bool
+	)
+
 	flag.BoolVarP(&flagHelp, "help", "h", false, "Show help (This message) and exit")
 	flag.BoolVarP(&flagVersion, "version", "v", false, "Show version and build info and exit")
+	flag.BoolVarP(&flagDumpSchema, "dump-schema", "", false, "Dump JSON Schema to validate the rule YAML config file")
 
 	flag.Parse()
 
@@ -34,6 +39,11 @@ func parseArgs() *options {
 
 	if flagVersion {
 		putErr(versionDetails())
+		os.Exit(exitOK)
+	}
+
+	if flagDumpSchema {
+		fmt.Println(dumpJSONSchema())
 		os.Exit(exitOK)
 	}
 

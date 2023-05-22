@@ -30,10 +30,10 @@ const (
 )
 
 type Rule struct {
-	Type   string         // match, prefix, suffix, regexp
-	Match  string         // Matching string/regexp
-	Color  string         // color
-	Target string         // word or line
+	Type   string         `json:"type" jsonschema:"enum=match,enum=prefix,enum=suffix,enum=regexp"`
+	Match  string         `json:"match" jsonschema:"string"`
+	Color  string         `json:"color" jsonschema:"string"`
+	Target string         `json:"target" jsonschema:"enum=word,enum=line"`
 	regexp *regexp.Regexp // If Type would be "regexp", then the compiled regexp is set here
 }
 

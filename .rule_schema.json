@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "Rule": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "match",
+            "prefix",
+            "suffix",
+            "regexp"
+          ]
+        },
+        "match": {
+          "type": "string"
+        },
+        "color": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string",
+          "enum": [
+            "word",
+            "line"
+          ]
+        }
+      },
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "type",
+        "match",
+        "color",
+        "target"
+      ]
+    }
+  },
+  "patternProperties": {
+    ".*": {
+      "items": {
+        "$ref": "#/$defs/Rule"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}
