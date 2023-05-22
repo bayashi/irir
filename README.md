@@ -55,7 +55,7 @@ You can see logs:
 
 `irir` loads rules from YAML file. The rule file locates on your config directory of [XDG Base Directory](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html). File name should be `irir_rule.yaml`.
 
-Here is the [JSON Schema file](https://github.com/bayashi/irir/blob/main/.rule_schema.json) to write `irir_rule.yaml`.
+Here is the [JSON Schema file](https://raw.githubusercontent.com/bayashi/irir/main/.rule_schema.json) to write `irir_rule.yaml`.
 
 ### irir_rule.yaml
 
