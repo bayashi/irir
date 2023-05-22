@@ -22,16 +22,22 @@ func parseArgs() *options {
 	o := &options{}
 
 	var (
-		flagHelp       bool
-		flagVersion    bool
-		flagDumpSchema bool
-		flagDumpColors bool
+		flagHelp           bool
+		flagVersion        bool
+		flagDumpSchema     bool
+		flagDumpColors     bool
+		flagDumpConfigPath bool
+		flagDumpRule       bool
+		flagDumpRules      bool
 	)
 
 	flag.BoolVarP(&flagHelp, "help", "h", false, "Show help (This message) and exit")
 	flag.BoolVarP(&flagVersion, "version", "v", false, "Show version and build info and exit")
 	flag.BoolVarP(&flagDumpSchema, "dump-schema", "", false, "Dump JSON Schema to validate the rule YAML config file")
 	flag.BoolVarP(&flagDumpColors, "dump-colors", "", false, "Dump color palette for enum list")
+	flag.BoolVarP(&flagDumpConfigPath, "dump-config-path", "", false, "Dump config file path")
+	flag.BoolVarP(&flagDumpRule, "dump-rule", "", false, "Dump specified rule")
+	flag.BoolVarP(&flagDumpRules, "dump-rules", "", false, "Show rules from config file")
 
 	flag.Parse()
 
@@ -54,7 +60,22 @@ func parseArgs() *options {
 		os.Exit(exitOK)
 	}
 
+	if flagDumpConfigPath {
+		fmt.Println(fullPath(irirConfigFiles[0]))
+		os.Exit(exitOK)
+	}
+
+	if flagDumpRules {
+		fmt.Println(dumpRules())
+		os.Exit(exitOK)
+	}
+
 	o.targetRule()
+
+	if flagDumpRule {
+		fmt.Println(dumpRule(o.rule))
+		os.Exit(exitOK)
+	}
 
 	return o
 }
