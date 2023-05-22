@@ -25,11 +25,13 @@ func parseArgs() *options {
 		flagHelp       bool
 		flagVersion    bool
 		flagDumpSchema bool
+		flagDumpColors bool
 	)
 
 	flag.BoolVarP(&flagHelp, "help", "h", false, "Show help (This message) and exit")
 	flag.BoolVarP(&flagVersion, "version", "v", false, "Show version and build info and exit")
 	flag.BoolVarP(&flagDumpSchema, "dump-schema", "", false, "Dump JSON Schema to validate the rule YAML config file")
+	flag.BoolVarP(&flagDumpColors, "dump-colors", "", false, "Dump color palette for enum list")
 
 	flag.Parse()
 
@@ -44,6 +46,11 @@ func parseArgs() *options {
 
 	if flagDumpSchema {
 		fmt.Println(dumpJSONSchema())
+		os.Exit(exitOK)
+	}
+
+	if flagDumpColors {
+		fmt.Println(dumpColorPalette())
 		os.Exit(exitOK)
 	}
 
