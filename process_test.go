@@ -94,20 +94,52 @@ func Test_process(t *testing.T) {
 			expect: []byte("\x1b[91mFoo Bar Baz    \x1b[0m"),
 		},
 		{
-			name: "regexp",
+			name: "regexp line",
+			args: args{
+				origLine: []byte("Foo Bar Baz"),
+				rule: []*Rule{
+					&Rule{
+						Target: "line",
+						Type:   "regexp",
+						Match:  "F..",
+						Color:  "red",
+						Regexp: regexp.MustCompile("(F..)"),
+					},
+				},
+			},
+			expect: []byte("\x1b[91mFoo Bar Baz\x1b[0m"),
+		},
+		{
+			name: "regexp word",
 			args: args{
 				origLine: []byte("Foo Bar Baz"),
 				rule: []*Rule{
 					&Rule{
 						Target: "word",
 						Type:   "regexp",
-						Match:  "Ba",
+						Match:  "Ba.",
 						Color:  "red",
-						Regexp: regexp.MustCompile("Ba"),
+						Regexp: regexp.MustCompile("(Ba.)"),
 					},
 				},
 			},
-			expect: []byte("Foo \x1b[91mBa\x1b[0mr \x1b[91mBa\x1b[0mz"),
+			expect: []byte("Foo \x1b[91mBar\x1b[0m \x1b[91mBaz\x1b[0m"),
+		},
+		{
+			name: "regexp words",
+			args: args{
+				origLine: []byte("Foo Bar Baz"),
+				rule: []*Rule{
+					&Rule{
+						Target: "word",
+						Type:   "regexp",
+						Match:  "(Ba)(.)\nGa$2",
+						Color:  "red",
+						Regexp: regexp.MustCompile("(Ba)(.)"),
+					},
+				},
+			},
+			expect: []byte("Foo \x1b[91mGar\x1b[0m \x1b[91mGaz\x1b[0m"),
 		},
 	}
 

@@ -91,6 +91,57 @@ above config is for `log` rule. And it has 3 ways to color as list.
 * `color`: specific color. See [the palette](https://github.com/bayashi/irir/blob/main/color_palette.go)
 * `target`: `word` or `line`. This specifies a scope of coloring.
 
+### The case of regexp type
+
+If `type` is `regexp`, then there are special way to set `regexp` for coloring words.
+
+#### Simple regexp case
+
+The condition of regexp is `Ba.`. It will match 2 places with the line `Foo Bar Baz`.
+
+```sh
+$ cat example_file.txt
+Foo Bar Baz
+
+$ cat ~/.config/irir/irir_rule.yaml
+re:
+- type: regexp
+  match: Ba.
+  color: red
+  target: word
+```
+
+Filter above `example_file.txt` like below:
+
+```sh
+$ cat example_file.txt | irir re
+```
+
+Output like this.
+
+![colored words by regexp](https://user-images.githubusercontent.com/42190/239843565-1945512c-9e03-49c6-8f4e-7b1b2aad90ba.png)
+
+#### Regexp replacement by matched elements
+
+The condition of regexp is `(Ba)(.)\nGa$2`. It will be split into a matching regexp `(Ba)(.)` and replacing string `Ga$2` by `\n`.
+
+```sh
+$ cat example_file.txt
+Foo Bar Baz
+
+$ cat ~/.config/irir/irir_rule.yaml
+re:
+- type: regexp
+  match: "(Ba)(.)\nGa$2"
+  color: red
+  target: word
+```
+
+Output should be:
+
+![colored and replaced words by regexp](https://user-images.githubusercontent.com/42190/239849754-b67e4fbd-8616-4149-8723-e5aa8c8605e4.png)
+
+
 ## Installation
 
 ```cmd

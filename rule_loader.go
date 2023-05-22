@@ -55,7 +55,8 @@ func loadRule(ruleName string) ([]*Rule, error) {
 
 	for i, rr := range r {
 		if rr.Type == TYPE_REGEXP {
-			r[i].Regexp = regexp.MustCompile(rr.Match)
+			m, _ := rr.re()
+			r[i].Regexp = regexp.MustCompile(m)
 		}
 		if _, ok := palette[strings.ToLower(rr.Color)]; !ok {
 			r[i].Color = "error"
@@ -98,4 +99,13 @@ func loadCfg() ([]byte, error) {
 
 func fullPath(fileName string) string {
 	return filepath.Join(xdg.ConfigHome, irirDir, fileName)
+}
+
+func (r *Rule) re() (string, string) {
+	m := strings.Split(r.Match, "\n")
+	if len(m) == 2 {
+		return m[0], m[1]
+	}
+
+	return "(" + r.Match + ")", "$1"
 }
