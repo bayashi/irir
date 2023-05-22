@@ -141,6 +141,60 @@ Output should be:
 
 ![colored and replaced words by regexp](https://user-images.githubusercontent.com/42190/239849754-b67e4fbd-8616-4149-8723-e5aa8c8605e4.png)
 
+### Another example
+
+To add colors for `go test` result.
+
+`irir_rule.yaml` is like below.
+
+```yaml
+gotest:
+- type: prefix
+  match: "--- PASS"
+  color: green
+  target: line
+- type: prefix
+  match: "ok"
+  color: green
+  target: line
+- type: prefix
+  match: "PASS"
+  color: green
+  target: line
+- type: prefix
+  match: "--- FAIL"
+  color: red
+  target: line
+- type: prefix
+  match: "FAIL"
+  color: red
+  target: line
+- type: prefix
+  match: "--- SKIP"
+  color: dark_yellow
+  target: line
+- type: match
+  match: "=== RUN"
+  color: gray
+  target: line
+- target: line
+  type: match
+  match: "=== CONT"
+  color: gray
+- type: match
+  match: "=== PAUSE"
+  color: gray
+  target: line
+```
+
+This is helpful on wrapping `go test` by `make`.
+
+```sh
+$ make test | irir gotest
+```
+
+![colored test result](https://user-images.githubusercontent.com/42190/239734820-f18006ce-6a9c-43b8-aaf0-c4f8ebd7a57b.png)
+
 
 ## Installation
 
