@@ -32,7 +32,7 @@ const (
 type Rule struct {
 	Type   string         `json:"type" jsonschema:"enum=match,enum=prefix,enum=suffix,enum=regexp"`
 	Match  string         `json:"match" jsonschema:"string"`
-	Color  string         `json:"color" jsonschema:"string"`
+	Color  string         `json:"color" jsonschema:"enum=dark_yellow,enum=red,enum=green,enum=magenta,enum=dark_green,enum=dark_cyan,enum=bg_red,enum=bg_blue,enum=yellow,enum=light_gray,enum=dark_red,enum=dark_blue,enum=cyan,enum=gray,enum=bg_yellow,enum=error,enum=bg_green,enum=bg_magenta,enum=bg_cyan,enum=blue,enum=white,enum=dark_magenta,enum=black"`
 	Target string         `json:"target" jsonschema:"enum=word,enum=line"`
 	regexp *regexp.Regexp // If Type would be "regexp", then the compiled regexp is set here
 }

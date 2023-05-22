@@ -16,7 +16,32 @@
           "type": "string"
         },
         "color": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "dark_yellow",
+            "red",
+            "green",
+            "magenta",
+            "dark_green",
+            "dark_cyan",
+            "bg_red",
+            "bg_blue",
+            "yellow",
+            "light_gray",
+            "dark_red",
+            "dark_blue",
+            "cyan",
+            "gray",
+            "bg_yellow",
+            "error",
+            "bg_green",
+            "bg_magenta",
+            "bg_cyan",
+            "blue",
+            "white",
+            "dark_magenta",
+            "black"
+          ]
         },
         "target": {
           "type": "string",
