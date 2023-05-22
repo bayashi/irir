@@ -34,7 +34,7 @@ type Rule struct {
 	Match  string         // Matching string/regexp
 	Color  string         // color
 	Target string         // word or line
-	Regexp *regexp.Regexp // If Type would be "regexp", then the compiled regexp is set here
+	regexp *regexp.Regexp // If Type would be "regexp", then the compiled regexp is set here
 }
 
 func loadRule(ruleName string) ([]*Rule, error) {
@@ -56,7 +56,7 @@ func loadRule(ruleName string) ([]*Rule, error) {
 	for i, rr := range r {
 		if rr.Type == TYPE_REGEXP {
 			m, _ := rr.re()
-			r[i].Regexp = regexp.MustCompile(m)
+			r[i].regexp = regexp.MustCompile(m)
 		}
 		if _, ok := palette[strings.ToLower(rr.Color)]; !ok {
 			r[i].Color = "error"
