@@ -28,6 +28,7 @@ func parseArgs() *options {
 		flagDumpColors     bool
 		flagDumpConfigPath bool
 		flagDumpRule       bool
+		flagDumpRules      bool
 	)
 
 	flag.BoolVarP(&flagHelp, "help", "h", false, "Show help (This message) and exit")
@@ -36,6 +37,7 @@ func parseArgs() *options {
 	flag.BoolVarP(&flagDumpColors, "dump-colors", "", false, "Dump color palette for enum list")
 	flag.BoolVarP(&flagDumpConfigPath, "dump-config-path", "", false, "Dump config file path")
 	flag.BoolVarP(&flagDumpRule, "dump-rule", "", false, "Dump specified rule")
+	flag.BoolVarP(&flagDumpRules, "dump-rules", "", false, "Show rules from config file")
 
 	flag.Parse()
 
@@ -60,6 +62,11 @@ func parseArgs() *options {
 
 	if flagDumpConfigPath {
 		fmt.Println(fullPath(irirConfigFiles[0]))
+		os.Exit(exitOK)
+	}
+
+	if flagDumpRules {
+		fmt.Println(dumpRules())
 		os.Exit(exitOK)
 	}
 

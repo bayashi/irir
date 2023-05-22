@@ -38,19 +38,14 @@ type Rule struct {
 }
 
 func loadRule(ruleName string) ([]*Rule, error) {
-	bytes, err := loadCfg()
+	cfg, err := allCfg()
 	if err != nil {
-		return []*Rule{}, err
-	}
-
-	cfg, err2 := parseCfg(bytes)
-	if err2 != nil {
-		return []*Rule{}, err
+		return nil, err
 	}
 
 	r, isExists := cfg[ruleName]
 	if !isExists {
-		return []*Rule{}, fmt.Errorf("'%s' doesn't exists in config", ruleName)
+		return nil, fmt.Errorf("'%s' doesn't exists in config", ruleName)
 	}
 
 	for i, rr := range r {
@@ -66,6 +61,20 @@ func loadRule(ruleName string) ([]*Rule, error) {
 	}
 
 	return r, nil
+}
+
+func allCfg() (map[string][]*Rule, error) {
+	bytes, err := loadCfg()
+	if err != nil {
+		return nil, err
+	}
+
+	cfg, err2 := parseCfg(bytes)
+	if err2 != nil {
+		return nil, err
+	}
+
+	return cfg, nil
 }
 
 func parseCfg(bytes []byte) (map[string][]*Rule, error) {
