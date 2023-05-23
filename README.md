@@ -215,6 +215,21 @@ Options:
 
 ## Installation
 
+### homebrew install
+
+If you are using Mac:
+
+    brew tap bayashi/irir
+    brew install bayashi/irir/irir
+
+### binary install
+
+Download binary from here: https://github.com/bayashi/irir/releases
+
+### go install
+
+If you have golang environment:
+
 ```cmd
 go install github.com/bayashi/irir@latest
 ```

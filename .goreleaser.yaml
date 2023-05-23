@@ -1,0 +1,24 @@
+builds:
+  - env:
+      - CGO_ENABLED=0
+    id: "irir"
+    binary: irir
+    goos:
+      - linux
+      - darwin
+      - windows
+    ldflags: -s -w -X main.version={{.Version}} -X "main.installFrom=Binary"
+archives:
+  - format_overrides:
+      - goos: windows
+        format: zip
+brews:
+  - tap:
+      owner: bayashi
+      name: homebrew-irir
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    folder: Formula
+    homepage: https://github.com/bayashi/irir
+    description: A filter to add colors for text lines generically from a YAML configuration file easily
+    test: |
+      system "#{bin}/irir", '--version'
