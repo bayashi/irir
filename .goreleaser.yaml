@@ -12,6 +12,13 @@ archives:
   - format_overrides:
       - goos: windows
         format: zip
+changelog:
+  use: github
+  filters:
+    exclude:
+    - Merge pull request
+    - Merge remote-tracking branch
+    - Merge branch
 brews:
   - tap:
       owner: bayashi
