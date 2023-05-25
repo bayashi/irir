@@ -219,8 +219,8 @@ Options:
 
 If you are using Mac:
 
-    brew tap bayashi/irir
-    brew install bayashi/irir/irir
+    brew tap bayashi/tap
+    brew install bayashi/tap/irir
 
 ### binary install
 
