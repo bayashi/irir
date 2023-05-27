@@ -27,6 +27,7 @@ func parseArgs() *options {
 		flagDumpSchema     bool
 		flagDumpColors     bool
 		flagDumpConfigPath bool
+		flagEditConfig     bool
 		flagDumpRule       bool
 		flagDumpRules      bool
 	)
@@ -36,6 +37,7 @@ func parseArgs() *options {
 	flag.BoolVarP(&flagDumpSchema, "dump-schema", "", false, "Dump JSON Schema to validate the rule YAML config file")
 	flag.BoolVarP(&flagDumpColors, "dump-colors", "", false, "Dump color palette")
 	flag.BoolVarP(&flagDumpConfigPath, "dump-config-path", "", false, "Dump config file path")
+	flag.BoolVarP(&flagEditConfig, "edit-config", "", false, "Invoke $EDITOR (or vim) to edit config YAML file")
 	flag.BoolVarP(&flagDumpRule, "dump-rule", "", false, "Dump specified rule")
 	flag.BoolVarP(&flagDumpRules, "dump-rules", "", false, "Show rules from config file")
 
@@ -62,6 +64,15 @@ func parseArgs() *options {
 
 	if flagDumpConfigPath {
 		fmt.Println(fullPath(irirConfigFiles[0]))
+		os.Exit(exitOK)
+	}
+
+	if flagEditConfig {
+		ret := editConfig(fullPath(irirConfigFiles[0]))
+		if ret != "" {
+			fmt.Println(ret)
+			os.Exit(exitErr)
+		}
 		os.Exit(exitOK)
 	}
 
