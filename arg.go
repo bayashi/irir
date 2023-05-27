@@ -34,7 +34,7 @@ func parseArgs() *options {
 	flag.BoolVarP(&flagHelp, "help", "h", false, "Show help (This message) and exit")
 	flag.BoolVarP(&flagVersion, "version", "v", false, "Show version and build info and exit")
 	flag.BoolVarP(&flagDumpSchema, "dump-schema", "", false, "Dump JSON Schema to validate the rule YAML config file")
-	flag.BoolVarP(&flagDumpColors, "dump-colors", "", false, "Dump color palette for enum list")
+	flag.BoolVarP(&flagDumpColors, "dump-colors", "", false, "Dump color palette")
 	flag.BoolVarP(&flagDumpConfigPath, "dump-config-path", "", false, "Dump config file path")
 	flag.BoolVarP(&flagDumpRule, "dump-rule", "", false, "Dump specified rule")
 	flag.BoolVarP(&flagDumpRules, "dump-rules", "", false, "Show rules from config file")

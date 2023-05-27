@@ -1,39 +1,68 @@
 package main
 
-import "github.com/fatih/color"
+import c "github.com/fatih/color"
 
 // See more details:
 // * https://github.com/fatih/color
 // * https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
-var palette = map[string]*color.Color{
+var palette = map[string]*c.Color{
 	// Bright color text
-	"red":        color.New(color.FgHiRed),
-	"green":      color.New(color.FgHiGreen),
-	"yellow":     color.New(color.FgHiYellow),
-	"blue":       color.New(color.FgHiBlue),
-	"magenta":    color.New(color.FgHiMagenta),
-	"cyan":       color.New(color.FgHiCyan),
-	"gray":       color.New(color.FgHiBlack),
-	"light_gray": color.New(color.FgWhite),
-	"white":      color.New(color.FgHiWhite),
+	"red":        c.New(c.FgHiRed),
+	"green":      c.New(c.FgHiGreen),
+	"yellow":     c.New(c.FgHiYellow),
+	"blue":       c.New(c.FgHiBlue),
+	"magenta":    c.New(c.FgHiMagenta),
+	"cyan":       c.New(c.FgHiCyan),
+	"gray":       c.New(c.FgHiBlack),
+	"light_gray": c.New(c.FgWhite),
+	"white":      c.New(c.FgHiWhite),
 
 	// Darker color text
-	"dark_red":     color.New(color.FgRed),
-	"dark_green":   color.New(color.FgGreen),
-	"dark_yellow":  color.New(color.FgYellow),
-	"dark_blue":    color.New(color.FgBlue),
-	"dark_magenta": color.New(color.FgMagenta),
-	"dark_cyan":    color.New(color.FgCyan),
-	"black":        color.New(color.FgBlack),
+	"black":        c.New(c.FgBlack),
+	"dark_red":     c.New(c.FgRed),
+	"dark_green":   c.New(c.FgGreen),
+	"dark_yellow":  c.New(c.FgYellow),
+	"dark_blue":    c.New(c.FgBlue),
+	"dark_magenta": c.New(c.FgMagenta),
+	"dark_cyan":    c.New(c.FgCyan),
 
 	// White text on background color
-	"bg_red":     color.New(color.FgHiWhite, color.BgRed),
-	"bg_green":   color.New(color.FgHiWhite, color.FgGreen),
-	"bg_yellow":  color.New(color.FgHiWhite, color.FgYellow),
-	"bg_blue":    color.New(color.FgHiWhite, color.FgBlue),
-	"bg_magenta": color.New(color.FgHiWhite, color.FgMagenta),
-	"bg_cyan":    color.New(color.FgHiWhite, color.FgCyan),
+	"bg_red":     c.New(c.FgHiWhite, c.BgRed),
+	"bg_green":   c.New(c.FgHiWhite, c.BgGreen),
+	"bg_yellow":  c.New(c.FgHiWhite, c.BgYellow),
+	"bg_blue":    c.New(c.FgHiWhite, c.BgBlue),
+	"bg_magenta": c.New(c.FgHiWhite, c.BgMagenta),
+	"bg_cyan":    c.New(c.FgHiWhite, c.BgCyan),
 
 	// For error text
-	"error": color.New(color.FgHiBlue, color.BgRed, color.Underline),
+	"error": c.New(c.FgHiBlue, c.BgRed, c.Underline),
+}
+
+var orderedColors = []string{
+	"red",
+	"green",
+	"yellow",
+	"blue",
+	"magenta",
+	"cyan",
+	"gray",
+	"light_gray",
+	"white",
+
+	"black",
+	"dark_red",
+	"dark_green",
+	"dark_yellow",
+	"dark_blue",
+	"dark_magenta",
+	"dark_cyan",
+
+	"bg_red",
+	"bg_green",
+	"bg_yellow",
+	"bg_blue",
+	"bg_magenta",
+	"bg_cyan",
+
+	"error",
 }
