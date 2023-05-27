@@ -37,7 +37,7 @@ func parseArgs() *options {
 	flag.BoolVarP(&flagDumpSchema, "dump-schema", "", false, "Dump JSON Schema to validate the rule YAML config file")
 	flag.BoolVarP(&flagDumpColors, "dump-colors", "", false, "Dump color palette")
 	flag.BoolVarP(&flagDumpConfigPath, "dump-config-path", "", false, "Dump config file path")
-	flag.BoolVarP(&flagEditConfig, "edit-config", "", false, "Invoke $EDITOR (or vim) to edit config YAML file")
+	flag.BoolVarP(&flagEditConfig, "edit-config", "", false, "Invoke $EDITOR (or vi) to edit config YAML file")
 	flag.BoolVarP(&flagDumpRule, "dump-rule", "", false, "Dump specified rule")
 	flag.BoolVarP(&flagDumpRules, "dump-rules", "", false, "Show rules from config file")
 

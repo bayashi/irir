@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	ENV_EDITOR = "EDITOR"
+	ENV_EDITOR     = "EDITOR"
 	DEFAULT_EDITOR = "vi"
 )
 
@@ -18,11 +18,11 @@ func editConfig(file string) string {
 	}
 
 	editor := editor()
-    c := exec.Command(editor, file)
-    c.Stdin = os.Stdin
-    c.Stdout = os.Stdout
-    c.Stderr = os.Stderr
-    err := c.Run()
+	c := exec.Command(editor, file)
+	c.Stdin = os.Stdin
+	c.Stdout = os.Stdout
+	c.Stderr = os.Stderr
+	err := c.Run()
 	if err != nil {
 		return fmt.Sprintf("could not open editor %s, %s", editor, err.Error())
 	}

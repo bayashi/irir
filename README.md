@@ -53,17 +53,9 @@ Yas!
 
 `irir` loads rules from YAML file. The rule file locates on your config directory of [XDG Base Directory](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html). File name should be `irir_rule.yaml`.
 
+You can start editing `irir_rule.yaml` by a command `irir --edit-config` except on Windows.
+
 You can see the location of `irir_rule.yaml` by a command `irir --dump-config-path`.
-
-So, you can start editing `irir_rule.yaml` like below:
-
-```
-# for vi
-vi "$(irir --dump-config-path)"
-
-# VSCode
-code "$(irir --dump-config-path)"
-```
 
 Here is the [JSON Schema file](https://raw.githubusercontent.com/bayashi/irir/main/.rule_schema.json) to support writing `irir_rule.yaml`.
 
@@ -232,11 +224,12 @@ $ make test | irir gotest
 ```
 Usage: cat example.log | irir RULE_ID
 Options:
-      --dump-colors        Dump color palette for enum list
+      --dump-colors        Dump color palette
       --dump-config-path   Dump config file path
       --dump-rule          Dump specified rule
       --dump-rules         Show rules from config file
       --dump-schema        Dump JSON Schema to validate the rule YAML config file
+      --edit-config        Invoke $EDITOR (or vi) to edit config YAML file
   -h, --help               Show help (This message) and exit
   -v, --version            Show version and build info and exit
 ```
