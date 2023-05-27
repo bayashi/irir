@@ -153,6 +153,24 @@ Output will be:
 
 ![colored and replaced words by regexp](https://user-images.githubusercontent.com/42190/239849754-b67e4fbd-8616-4149-8723-e5aa8c8605e4.png)
 
+#### Special chars in YAML for regexp
+
+As for YAML spec, if you write backslash `\` in string value, then you should enclose string value by single-quote like below:
+
+```yaml
+- type: regexp
+  match: '\w+\.go'
+```
+
+If you enclose regexp with backslash by double-quote, then you should escape backslash by backslash:
+
+```yaml
+- type: regexp
+  match: "\\w+\\.go"
+```
+
+This is bit confusing. Single-quoted regexp is easier.
+
 ### Another example
 
 To add colors for `go test` result.
