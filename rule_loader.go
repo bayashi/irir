@@ -71,7 +71,7 @@ func allCfg() (map[string][]*Rule, error) {
 
 	cfg, err2 := parseCfg(bytes)
 	if err2 != nil {
-		return nil, err
+		return nil, err2
 	}
 
 	return cfg, nil
