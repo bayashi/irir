@@ -5,9 +5,9 @@ import "strings"
 
 func dumpColorPalette() string {
 	colors := []string{}
-	for k := range palette {
-		colors = append(colors, "enum=" + k)
+	for _, c := range orderedColors {
+		colors = append(colors, palette[c].Sprintf(c))
 	}
 
-	return strings.Join(colors, ",")
+	return strings.Join(colors, "\n")
 }
