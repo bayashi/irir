@@ -8,7 +8,7 @@ import (
 )
 
 func dumpRule(rule string) string {
-	r, err := loadRule(rule)
+	r, err := loadRule(cfgFilePath, rule)
 	if err != nil {
 		return fmt.Sprintf("could not find %s, %s", rule, err.Error())
 	}
@@ -22,7 +22,7 @@ func dumpRule(rule string) string {
 }
 
 func dumpRules() string {
-	cfg, err := allCfg()
+	cfg, err := allCfg(cfgFilePath)
 	if err != nil {
 		return fmt.Sprintf("could not get config %s", err.Error())
 	}

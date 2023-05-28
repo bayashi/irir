@@ -4,8 +4,10 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"path/filepath"
 	"syscall"
 
+	"github.com/adrg/xdg"
 	"golang.org/x/term"
 )
 
@@ -19,6 +21,10 @@ func main() {
 	os.Exit(exitOK)
 }
 
+var cfgFilePath = func(fileName string) string {
+	return filepath.Join(xdg.ConfigHome, irirDir, fileName)
+}
+
 func run() error {
 	o := parseArgs()
 
@@ -26,7 +32,7 @@ func run() error {
 		os.Exit(exitOK)
 	}
 
-	rule, err := loadRule(o.rule)
+	rule, err := loadRule(cfgFilePath, o.rule)
 	if err != nil {
 		return err
 	}
