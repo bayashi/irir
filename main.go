@@ -39,9 +39,11 @@ func run() error {
 
 	s := bufio.NewScanner(os.Stdin)
 	for s.Scan() {
-		result, err := process(s.Bytes(), rule)
+		line := s.Bytes()
+		result, err := process(line, rule)
 		if err != nil {
-			return err
+			putErr(err.Error())
+			result = line
 		}
 		os.Stdout.Write(result)
 		os.Stdout.WriteString("\n")
