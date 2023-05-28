@@ -14,7 +14,7 @@ import (
 func TestRuleColorEnum(t *testing.T) {
 	colors := []string{}
 	for _, c := range orderedColors {
-		colors = append(colors, "enum=" + c)
+		colors = append(colors, "enum="+c)
 	}
 	expect := strings.Join(colors, ",")
 
