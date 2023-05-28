@@ -125,22 +125,6 @@ func Test_process(t *testing.T) {
 			},
 			expect: []byte("Foo \x1b[91mBar\x1b[0m \x1b[91mBaz\x1b[0m"),
 		},
-		{
-			name: "regexp words",
-			args: args{
-				origLine: []byte("Foo Bar Baz"),
-				rule: []*Rule{
-					&Rule{
-						Target: "word",
-						Type:   "regexp",
-						Match:  "(Ba)(.)\nGa$2",
-						Color:  "red",
-						regexp: regexp.MustCompile("(Ba)(.)"),
-					},
-				},
-			},
-			expect: []byte("Foo \x1b[91mGar\x1b[0m \x1b[91mGaz\x1b[0m"),
-		},
 	}
 
 	color.NoColor = false
