@@ -3,11 +3,9 @@ package main
 import (
 	"fmt"
 	"os"
-	"path/filepath"
 	"regexp"
 	"strings"
 
-	"github.com/adrg/xdg"
 	yaml "gopkg.in/yaml.v3"
 )
 
@@ -37,8 +35,8 @@ type Rule struct {
 	regexp *regexp.Regexp // If Type would be "regexp", then the compiled regexp is set here
 }
 
-func loadRule(ruleName string) ([]*Rule, error) {
-	cfg, err := allCfg()
+func loadRule(cfp func(f string) string, ruleName string) ([]*Rule, error) {
+	cfg, err := allCfg(cfp)
 	if err != nil {
 		return nil, err
 	}
@@ -62,8 +60,8 @@ func loadRule(ruleName string) ([]*Rule, error) {
 	return r, nil
 }
 
-func allCfg() (map[string][]*Rule, error) {
-	bytes, err := loadCfg()
+func allCfg(cfp func(f string) string) (map[string][]*Rule, error) {
+	bytes, err := loadCfg(cfp)
 	if err != nil {
 		return nil, err
 	}
@@ -86,10 +84,10 @@ func parseCfg(bytes []byte) (map[string][]*Rule, error) {
 	return result, nil
 }
 
-func loadCfg() ([]byte, error) {
+func loadCfg(cfp func(f string) string) ([]byte, error) {
 	expectedCfgFiles := []string{}
 	for _, cfgFile := range irirConfigFiles {
-		cfgFullPath := fullPath(cfgFile)
+		cfgFullPath := cfp(cfgFile)
 		expectedCfgFiles = append(expectedCfgFiles, cfgFullPath)
 		if _, err := os.Stat(cfgFullPath); err != nil {
 			continue
@@ -103,8 +101,4 @@ func loadCfg() ([]byte, error) {
 	}
 
 	return nil, fmt.Errorf("could not read rule config file %s", strings.Join(expectedCfgFiles, ", "))
-}
-
-func fullPath(fileName string) string {
-	return filepath.Join(xdg.ConfigHome, irirDir, fileName)
 }

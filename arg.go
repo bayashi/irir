@@ -63,12 +63,12 @@ func parseArgs() *options {
 	}
 
 	if flagDumpConfigPath {
-		fmt.Println(fullPath(irirConfigFiles[0]))
+		fmt.Println(cfgFilePath(irirConfigFiles[0]))
 		os.Exit(exitOK)
 	}
 
 	if flagEditConfig {
-		ret := editConfig(fullPath(irirConfigFiles[0]))
+		ret := editConfig(cfgFilePath(irirConfigFiles[0]))
 		if ret != "" {
 			fmt.Println(ret)
 			os.Exit(exitErr)
