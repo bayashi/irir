@@ -125,26 +125,6 @@ Output like this.
 
 ![colored words by regexp](https://user-images.githubusercontent.com/42190/239843565-1945512c-9e03-49c6-8f4e-7b1b2aad90ba.png)
 
-#### Regexp replacement by matched elements
-
-The condition of regexp is `(Ba)(.)\nGa$2`. It will be split into a matching regexp `(Ba)(.)` and replacing string `Ga$2` by `\n`.
-
-```sh
-$ cat example_file.txt
-Foo Bar Baz
-
-$ cat ~/.config/irir/irir_rule.yaml
-re:
-- type: regexp
-  match: "(Ba)(.)\nGa$2"
-  color: red
-  target: word
-```
-
-Output will be:
-
-![colored and replaced words by regexp](https://user-images.githubusercontent.com/42190/239849754-b67e4fbd-8616-4149-8723-e5aa8c8605e4.png)
-
 #### Special chars in YAML for regexp
 
 As for YAML spec, if you write backslash `\` in string value, then you should enclose string value by single-quote like below:
