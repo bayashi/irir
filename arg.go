@@ -88,6 +88,10 @@ func parseArgs() *options {
 		os.Exit(exitOK)
 	}
 
+	if len(flag.Args()) == 0 && o.rule == "" {
+		putHelp(fmt.Sprintf("Version %s", getVersion()))
+	}
+
 	return o
 }
 
@@ -127,9 +131,5 @@ func (o *options) targetRule() {
 			continue
 		}
 		o.rule = arg
-	}
-
-	if o.rule == "" {
-		putHelp("Err: Wrong args. You should specify a rule")
 	}
 }
