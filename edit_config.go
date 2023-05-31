@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"runtime"
 )
 
@@ -15,6 +16,10 @@ const (
 func editConfig(file string) string {
 	if runtime.GOOS == "windows" {
 		return "Not supported this option on Windows"
+	}
+
+	if err := createConfigDir(file); err != nil {
+		return err.Error()
 	}
 
 	editor := editor()
@@ -37,4 +42,17 @@ func editor() string {
 	}
 
 	return editor
+}
+
+func createConfigDir(dirPath string) error {
+	d := filepath.Dir(dirPath)
+	dir, err := os.Stat(d)
+	if err != nil || !dir.IsDir() {
+		err2 := os.MkdirAll(d, os.FileMode(0700)&os.ModePerm)
+		if err2 != nil {
+			return err2
+		}
+	}
+
+	return nil
 }
