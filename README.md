@@ -214,6 +214,31 @@ Options:
   -v, --version            Show version and build info and exit
 ```
 
+## Wrap Command Feature (Experimental)
+
+NOTE: Don't execute a command from outside you don't handle. Just invoke only your own commands.
+
+Below command line will color an output from `some-command` by `irir rule`.
+
+```sh
+$ iriri rule -- some-command
+```
+
+It's as same as below.
+
+```sh
+$ some-command | irir rule
+```
+
+If you often use `irir`, you can set alias with wrap command feature like below.
+
+```sh
+$ alias some-command="iriri rule -- some-command"
+```
+
+Then you can avoid writing `| irir rule` on each time.
+
+
 ## Installation
 
 ### homebrew install
