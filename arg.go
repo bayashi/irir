@@ -15,7 +15,9 @@ var (
 )
 
 type options struct {
-	rule string
+	rule        string
+	wrapCmdName string
+	wrapCmdArgs []string
 }
 
 func parseArgs() *options {
@@ -41,6 +43,7 @@ func parseArgs() *options {
 	flag.BoolVarP(&flagDumpRule, "dump-rule", "", false, "Dump specified rule")
 	flag.BoolVarP(&flagDumpRules, "dump-rules", "", false, "Show rules from config file")
 
+	flag.SetInterspersed(false)
 	flag.Parse()
 
 	if flagHelp {
@@ -82,14 +85,11 @@ func parseArgs() *options {
 	}
 
 	o.targetRule()
+	o.setWrapCommand()
 
 	if flagDumpRule {
 		fmt.Println(dumpRule(o.rule))
 		os.Exit(exitOK)
-	}
-
-	if len(flag.Args()) == 0 && o.rule == "" {
-		putHelp(fmt.Sprintf("Version %s", getVersion()))
 	}
 
 	return o
@@ -123,13 +123,42 @@ func getVersion() string {
 }
 
 func (o *options) targetRule() {
+	if len(flag.Args()) == 0 {
+		putHelp(fmt.Sprintf("Version %s", getVersion()))
+	}
+
+	// a rule is the first arg
+	// remaining args are some command line to be kicked later
 	for _, arg := range flag.Args() {
-		if o.rule != "" {
-			putHelp(fmt.Sprintf("Err: Wrong args. Unnecessary arg [%s]", arg))
-		}
-		if arg == "-" {
+		o.rule = arg
+		break
+	}
+}
+
+func (o *options) setWrapCommand() {
+	if len(flag.Args()) == 0 {
+		return
+	}
+
+	// wrap command mode
+	isStartedWrapCmd := false
+	isStartedWrapCmdArg := false
+	for i, arg := range flag.Args() {
+		if i == 0 {
+			// first arg is the rule name
 			continue
 		}
-		o.rule = arg
+		if arg == "--" && !isStartedWrapCmd {
+			isStartedWrapCmd = true
+			continue
+		}
+		if isStartedWrapCmd {
+			if !isStartedWrapCmdArg {
+				o.wrapCmdName = arg
+				isStartedWrapCmdArg = true
+			} else {
+				o.wrapCmdArgs = append(o.wrapCmdArgs, arg)
+			}
+		}
 	}
 }

@@ -1,14 +1,8 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"os"
-	"path/filepath"
-	"syscall"
-
-	"github.com/adrg/xdg"
-	"golang.org/x/term"
 )
 
 func main() {
@@ -19,35 +13,4 @@ func main() {
 	}
 
 	os.Exit(exitOK)
-}
-
-var cfgFilePath = func(fileName string) string {
-	return filepath.Join(xdg.ConfigHome, irirDir, fileName)
-}
-
-func run() error {
-	o := parseArgs()
-
-	if term.IsTerminal(int(syscall.Stdin)) {
-		os.Exit(exitOK)
-	}
-
-	rule, err := loadRule(cfgFilePath, o.rule)
-	if err != nil {
-		return err
-	}
-
-	s := bufio.NewScanner(os.Stdin)
-	for s.Scan() {
-		line := s.Bytes()
-		result, err := process(line, rule)
-		if err != nil {
-			putErr(err.Error())
-			result = line
-		}
-		os.Stdout.Write(result)
-		os.Stdout.WriteString("\n")
-	}
-
-	return nil
 }
