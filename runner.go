@@ -13,7 +13,6 @@ import (
 	"golang.org/x/term"
 )
 
-
 var cfgFilePath = func(fileName string) string {
 	return filepath.Join(xdg.ConfigHome, irirDir, fileName)
 }
@@ -62,9 +61,9 @@ func wrapCommand(o *options, rule []*Rule) error {
 		return fmt.Errorf("could not put stderr %#v, %w", cmd.String(), err)
 	}
 
-    if err := cmd.Wait(); err != nil {
-        return fmt.Errorf("something went wrong %#v, %w", cmd.String(), err)
-    }
+	if err := cmd.Wait(); err != nil {
+		return fmt.Errorf("something went wrong %#v, %w", cmd.String(), err)
+	}
 
 	return nil
 }
