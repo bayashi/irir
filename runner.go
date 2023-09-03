@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"sync"
 	"syscall"
 
 	"github.com/adrg/xdg"
@@ -54,12 +55,19 @@ func wrapCommand(o *options, rule []*Rule) error {
 		return fmt.Errorf("could not start %#v, %w", cmd.String(), err)
 	}
 
-	if err := routine(stdout, rule); err != nil {
-		return fmt.Errorf("could not put stdout %#v, %w", cmd.String(), err)
-	}
-	if err := routine(stderr, rule); err != nil {
-		return fmt.Errorf("could not put stderr %#v, %w", cmd.String(), err)
-	}
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		routine(stdout, rule)
+	}()
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		routine(stderr, rule)
+	}()
+
+	wg.Wait()
 
 	if err := cmd.Wait(); err != nil {
 		return fmt.Errorf("something went wrong %#v, %w", cmd.String(), err)
