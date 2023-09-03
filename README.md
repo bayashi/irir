@@ -145,9 +145,7 @@ This is bit confusing. Single-quoted regexp is easier.
 
 ### Another example
 
-To add colors for `go test` result.
-
-`irir_rule.yaml` is like below.
+To add colors for `go test` result by `gotest` rule.
 
 ```yaml
 gotest:
@@ -187,9 +185,17 @@ gotest:
   match: "=== PAUSE"
   color: gray
   target: line
+- type: match
+  match: "[no tests to run]"
+  color: yellow
+  target: word
+- type: regexp
+  match: '[^\/]+\.go:\d+'
+  color: cyan
+  target: word
 ```
 
-This is helpful on wrapped `go test` through `make`.
+This is also helpful on wrapped `go test` through `make` in a project.
 
 ```sh
 $ make test | irir gotest
