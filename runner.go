@@ -44,19 +44,26 @@ func wrapCommand(o *options, rule []*Rule) error {
 
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		return fmt.Errorf("%s pipe error %#v, %w", irir, cmd.String(), err)
+		return fmt.Errorf("stdout pipe error %#v, %w", cmd.String(), err)
+	}
+	stderr, err := cmd.StderrPipe()
+	if err != nil {
+		return fmt.Errorf("stderr pipe error %#v, %w", cmd.String(), err)
 	}
 
 	if err := cmd.Start(); err != nil {
-		return fmt.Errorf("%s error at start %#v, %w", irir, cmd.String(), err)
+		return fmt.Errorf("could not start %#v, %w", cmd.String(), err)
 	}
 
 	if err := routine(stdout, rule); err != nil {
-		return fmt.Errorf("%s stdout error %#v, %w", irir, cmd.String(), err)
+		return fmt.Errorf("could not put stdout %#v, %w", cmd.String(), err)
+	}
+	if err := routine(stderr, rule); err != nil {
+		return fmt.Errorf("could not put stderr %#v, %w", cmd.String(), err)
 	}
 
     if err := cmd.Wait(); err != nil {
-        return fmt.Errorf("%s exec error %#v, %w", irir, cmd.String(), err)
+        return fmt.Errorf("something went wrong %#v, %w", cmd.String(), err)
     }
 
 	return nil
