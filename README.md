@@ -253,8 +253,6 @@ $ alias some-command="iriri rule -- some-command"
 
 Then you can avoid writing `| irir rule` on each time.
 
-**NOTE**: You have to specify a rule name for Wrap Command Feature even if you set default rule ENV.
-
 ## Installation
 
 ### homebrew install
