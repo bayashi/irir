@@ -53,3 +53,39 @@ func TestTargetRule(t *testing.T) {
 		})
 	}
 }
+
+func TestSetWrapCommand(t *testing.T) {
+	for name, tt := range map[string]struct {
+		args  []string
+		expectCmdName string
+		expectCmdArgs []string
+	}{
+		"no wrap command": {
+			args: []string{},
+			expectCmdName: "",
+			expectCmdArgs: nil,
+		},
+		"no wrap command, just only rule": {
+			args: []string{"rule"},
+			expectCmdName: "",
+			expectCmdArgs: nil,
+		},
+		"wrap command with rule": {
+			args: []string{"rule", "--", "ls", "-la"},
+			expectCmdName: "ls",
+			expectCmdArgs: []string{"-la"},
+		},
+		"wrap command without rule": {
+			args: []string{"--", "ls", "-la"},
+			expectCmdName: "ls",
+			expectCmdArgs: []string{"-la"},
+		},
+	}{
+		t.Run(name, func(t *testing.T) {
+			o := &options{}
+			o.setWrapCommand(tt.args)
+			a.Got(o.wrapCmdName).Expect(tt.expectCmdName).Same(t)
+			a.Got(o.wrapCmdArgs).Expect(tt.expectCmdArgs).Same(t)
+		})
+	}
+}
