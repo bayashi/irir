@@ -203,6 +203,14 @@ $ make test | irir gotest
 
 ![colored test result](https://user-images.githubusercontent.com/42190/239734820-f18006ce-6a9c-43b8-aaf0-c4f8ebd7a57b.png)
 
+## Default rule
+
+You can specify default rule by ENV:`IRIR_DEFAULT_RULE`. Then you can omit rule argument in command.
+
+```sh
+IRIR_DEFAULT_RULE=gotest
+```
+
 ## Full options
 
 `irir --help`

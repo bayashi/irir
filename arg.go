@@ -14,6 +14,8 @@ var (
 	installFrom = "Source"
 )
 
+const ENV_KEY_IRIR_DEFAULT_RULE = "IRIR_DEFAULT_RULE"
+
 type options struct {
 	rule        string
 	wrapCmdName string
@@ -47,7 +49,7 @@ func parseArgs() *options {
 	flag.Parse()
 
 	if flagHelp {
-		putHelp(fmt.Sprintf("Version %s", getVersion()))
+		putHelp()
 	}
 
 	if flagVersion {
@@ -84,7 +86,7 @@ func parseArgs() *options {
 		os.Exit(exitOK)
 	}
 
-	o.targetRule()
+	o.targetRule(flag.Args())
 	o.setWrapCommand()
 
 	if flagDumpRule {
@@ -122,17 +124,33 @@ func getVersion() string {
 	return i.Main.Version
 }
 
-func (o *options) targetRule() {
-	if len(flag.Args()) == 0 {
-		putHelp(fmt.Sprintf("Version %s", getVersion()))
+func (o *options) targetRule(args []string) {
+	if len(args) == 0 || len(args[0]) == 0 {
+		o.rule = getDefaultRule()
+		return
 	}
 
-	// a rule is the first arg
-	// remaining args are some command line to be kicked later
-	for _, arg := range flag.Args() {
-		o.rule = arg
-		break
+	for i, arg := range args {
+		if i == 0 {
+			if arg != "--" {
+				o.rule = arg
+				break
+			} else if arg == "--" {
+				o.rule = getDefaultRule()
+				break
+			}
+		}
+		putHelpWithMessage("You should specify a RULE or set IRIR_DEFAULT_RULE ENV")
 	}
+}
+
+func getDefaultRule() string {
+	defaultRule := os.Getenv(ENV_KEY_IRIR_DEFAULT_RULE)
+	if defaultRule == "" {
+		putHelpWithMessage("You should specify a RULE or set IRIR_DEFAULT_RULE ENV")
+	}
+
+	return defaultRule
 }
 
 func (o *options) setWrapCommand() {
@@ -143,9 +161,8 @@ func (o *options) setWrapCommand() {
 	// wrap command mode
 	isStartedWrapCmd := false
 	isStartedWrapCmdArg := false
-	for i, arg := range flag.Args() {
-		if i == 0 {
-			// first arg is the rule name
+	for _, arg := range flag.Args() {
+		if arg != "--" && !isStartedWrapCmd {
 			continue
 		}
 		if arg == "--" && !isStartedWrapCmd {
