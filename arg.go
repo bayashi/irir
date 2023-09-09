@@ -86,8 +86,9 @@ func parseArgs() *options {
 		os.Exit(exitOK)
 	}
 
-	o.targetRule(flag.Args())
-	o.setWrapCommand()
+	rawArgs := os.Args[1:]
+	o.targetRule(rawArgs)
+	o.setWrapCommand(rawArgs)
 
 	if flagDumpRule {
 		fmt.Println(dumpRule(o.rule))
@@ -153,15 +154,15 @@ func getDefaultRule() string {
 	return defaultRule
 }
 
-func (o *options) setWrapCommand() {
-	if len(flag.Args()) == 0 {
+func (o *options) setWrapCommand(args []string) {
+	if len(args) == 0 {
 		return
 	}
 
 	// wrap command mode
 	isStartedWrapCmd := false
 	isStartedWrapCmdArg := false
-	for _, arg := range flag.Args() {
+	for _, arg := range args {
 		if arg != "--" && !isStartedWrapCmd {
 			continue
 		}
