@@ -20,10 +20,17 @@ func putUsage() {
 	putErr(fmt.Sprintf("Usage: cat example.log | %s RULE_ID", irir))
 }
 
-func putHelp(message string) {
-	putErr(message)
+func putHelp() {
+	putErr(fmt.Sprintf("Version %s", getVersion()))
 	putUsage()
 	putErr("Options:")
 	flag.PrintDefaults()
 	os.Exit(exitOK)
+}
+
+func putHelpWithMessage(message string) {
+	if message != "" {
+		putErr(message)
+	}
+	putHelp()
 }
