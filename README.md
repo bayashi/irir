@@ -205,10 +205,11 @@ $ make test | irir gotest
 
 ## Default rule
 
-You can specify default rule by ENV:`IRIR_DEFAULT_RULE`. Then you can omit rule argument in command.
+You can specify default rule by ENV:`IRIR_DEFAULT_RULE`. Then you can omit rule argument in command line.
 
 ```sh
-IRIR_DEFAULT_RULE=gotest
+export IRIR_DEFAULT_RULE=gotest
+go test -v ./... | irir
 ```
 
 ## Full options
@@ -252,6 +253,7 @@ $ alias some-command="iriri rule -- some-command"
 
 Then you can avoid writing `| irir rule` on each time.
 
+**NOTE**: You have to specify a rule name for Wrap Command Feature even if you set default rule ENV.
 
 ## Installation
 
