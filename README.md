@@ -1,6 +1,5 @@
 # irir
 
-<a href="https://github.com/bayashi/irir/blob/main/LICENSE" title="irir License"><img src="https://img.shields.io/badge/LICENSE-MIT-GREEN.png" alt="MIT License"></a>
 <a href="https://github.com/bayashi/irir/actions" title="irir CI"><img src="https://github.com/bayashi/irir/workflows/main/badge.svg" alt="irir CI"></a>
 <a href="https://goreportcard.com/report/github.com/bayashi/irir" title="irir report card" target="_blank"><img src="https://goreportcard.com/badge/github.com/bayashi/irir" alt="irir report card"></a>
 <a href="https://pkg.go.dev/github.com/bayashi/irir" title="Go irir package reference" target="_blank"><img src="https://pkg.go.dev/badge/github.com/bayashi/irir.svg" alt="Go Reference: irir"></a>
@@ -189,6 +188,10 @@ gotest:
   match: "[no tests to run]"
   color: yellow
   target: word
+- type: match
+  match: "[no test files]"
+  color: yellow
+  target: word
 - type: regexp
   match: '[^\/]+\.go:\d+'
   color: cyan
@@ -252,6 +255,16 @@ $ alias some-command="iriri rule -- some-command"
 ```
 
 Then you can avoid writing `| irir rule` on each time.
+
+## TIPS: Color for Github Actions
+
+Github Actions doesn't have TTY. If you want to use `irir` in Github Actions, Then you should add `shell: 'script -q -e -c "bash {0}"'` line like below.
+
+```yaml
+  - name: Run tests
+    shell: 'script -q -e -c "bash {0}"'
+    run: go test -v ./... | irir
+```
 
 ## Installation
 
