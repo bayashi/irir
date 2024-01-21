@@ -258,12 +258,18 @@ Then you can avoid writing `| irir rule` on each time.
 
 ## TIPS: Color for Github Actions
 
-Github Actions doesn't have TTY. If you want to use `irir` in Github Actions, Then you should add `shell: 'script -q -e -c "bash {0}"'` line like below.
+Github Actions doesn't have TTY. If you want to use `irir` in Github Actions, Then you should add `shell: 'script -q -e -c "bash {0}"'` line like below. This is an example how to color outputs of `go test` in Github Actions. 
 
 ```yaml
-  - name: Run tests
-    shell: 'script -q -e -c "bash {0}"'
-    run: go test -v ./... | irir
+- name: Install irir
+  run: |
+    go install github.com/bayashi/irir@latest
+    mkdir -p $HOME/.config/irir
+    curl -L https://raw.githubusercontent.com/bayashi/irir/1f6a6a0e4f20fba489eaa1047aea026dd0f056f3/configs/gotest.yaml > $HOME/.config/irir/irir_rule.yaml
+
+- name: Run tests
+  shell: 'script -q -e -c "bash {0}"'
+  run: go test -v ./... | irir
 ```
 
 ## Installation
