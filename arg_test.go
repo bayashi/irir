@@ -21,30 +21,30 @@ func TestTargetRule(t *testing.T) {
 		expect string
 	}{
 		"no arg, then set default rule": {
-			args: []string{},
+			args:   []string{},
 			expect: DEFAULT_RULE,
 		},
 		"blank arg, then set default rule": {
-			args: []string{""},
+			args:   []string{""},
 			expect: DEFAULT_RULE,
 		},
 		"just one normal rule": {
-			args: []string{RULE},
+			args:   []string{RULE},
 			expect: RULE,
 		},
 		"just one normal rule with wrap command": {
-			args: []string{RULE, "--", "ls", "-lah"},
+			args:   []string{RULE, "--", "ls", "-lah"},
 			expect: RULE,
 		},
 		"no rule with wrap command, then set default rule": {
-			args: []string{"--", "ls", "-lah"},
+			args:   []string{"--", "ls", "-lah"},
 			expect: DEFAULT_RULE,
 		},
 		"blank rule with wrap command, then set default rule": {
-			args: []string{"", "--", "ls", "-lah"},
+			args:   []string{"", "--", "ls", "-lah"},
 			expect: DEFAULT_RULE,
 		},
-	}{
+	} {
 		t.Setenv(ENV_KEY_IRIR_DEFAULT_RULE, DEFAULT_RULE)
 		t.Run(name, func(t *testing.T) {
 			o := &options{}
@@ -56,31 +56,31 @@ func TestTargetRule(t *testing.T) {
 
 func TestSetWrapCommand(t *testing.T) {
 	for name, tt := range map[string]struct {
-		args  []string
+		args          []string
 		expectCmdName string
 		expectCmdArgs []string
 	}{
 		"no wrap command": {
-			args: []string{},
+			args:          []string{},
 			expectCmdName: "",
 			expectCmdArgs: nil,
 		},
 		"no wrap command, just only rule": {
-			args: []string{"rule"},
+			args:          []string{"rule"},
 			expectCmdName: "",
 			expectCmdArgs: nil,
 		},
 		"wrap command with rule": {
-			args: []string{"rule", "--", "ls", "-la"},
+			args:          []string{"rule", "--", "ls", "-la"},
 			expectCmdName: "ls",
 			expectCmdArgs: []string{"-la"},
 		},
 		"wrap command without rule": {
-			args: []string{"--", "ls", "-la"},
+			args:          []string{"--", "ls", "-la"},
 			expectCmdName: "ls",
 			expectCmdArgs: []string{"-la"},
 		},
-	}{
+	} {
 		t.Run(name, func(t *testing.T) {
 			o := &options{}
 			o.setWrapCommand(tt.args)

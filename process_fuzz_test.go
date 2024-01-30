@@ -5,7 +5,7 @@ import (
 )
 
 /*
-	$ go test -fuzz Fuzz -fuzztime=30s
+$ go test -fuzz Fuzz -fuzztime=30s
 */
 func FuzzProcess(f *testing.F) {
 	f.Fuzz(func(t *testing.T, tgt, typ, mch, c string, d []byte) {

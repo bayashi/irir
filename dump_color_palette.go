@@ -2,7 +2,6 @@ package main
 
 import "strings"
 
-
 func dumpColorPalette() string {
 	colors := []string{}
 	for _, c := range orderedColors {
