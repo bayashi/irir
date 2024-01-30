@@ -53,22 +53,22 @@ func processLine(line []byte, r *Rule) ([]byte, error) {
 	switch r.Type {
 	case TYPE_MATCH:
 		if strings.Contains(strings.TrimSpace(string(line)), r.Match) {
-			coloredLine := palette[r.Color].Sprintf(string(line))
+			coloredLine := palette[r.Color].Sprintf("%s", line)
 			return []byte(coloredLine), nil
 		}
 	case TYPE_REGEXP:
 		if r.regexp.Match(line) {
-			coloredLine := palette[r.Color].Sprintf(string(line))
+			coloredLine := palette[r.Color].Sprintf("%s", line)
 			return []byte(coloredLine), nil
 		}
 	case TYPE_PREFIX:
 		if strings.HasPrefix(strings.TrimSpace(string(line)), r.Match) {
-			coloredLine := palette[r.Color].Sprintf(string(line))
+			coloredLine := palette[r.Color].Sprintf("%s", line)
 			return []byte(coloredLine), nil
 		}
 	case TYPE_SUFFIX:
 		if strings.HasSuffix(strings.TrimSpace(string(line)), r.Match) {
-			coloredLine := palette[r.Color].Sprintf(string(line))
+			coloredLine := palette[r.Color].Sprintf("%s", line)
 			return []byte(coloredLine), nil
 		}
 	default:

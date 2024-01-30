@@ -125,6 +125,21 @@ func Test_process(t *testing.T) {
 			},
 			expect: []byte("Foo \x1b[91mBar\x1b[0m \x1b[91mBaz\x1b[0m"),
 		},
+		{
+			name: "color text including `%`",
+			args: args{
+				origLine: []byte("coverage: 94.6% of statements"),
+				rule: []*Rule{
+					&Rule{
+						Target: "line",
+						Type:   "match",
+						Match:  "coverage",
+						Color:  "red",
+					},
+				},
+			},
+			expect: []byte("\x1b[91mcoverage: 94.6% of statements\x1b[0m"),
+		},
 	}
 
 	color.NoColor = false
