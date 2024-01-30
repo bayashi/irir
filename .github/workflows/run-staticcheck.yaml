@@ -37,6 +37,11 @@ jobs:
       - name: Run vet
         run: go vet -v ./...
 
+      - name: Check diff of goimports
+        run: |
+            go install golang.org/x/tools/cmd/goimports@latest
+            goimports -w . && git diff --exit-code
+
       - name: Setup staticcheck
         uses: dominikh/staticcheck-action@v1.3.0
         with:
