@@ -1,7 +1,9 @@
 github.com/adrg/xdg v0.4.0 h1:RzRqFcjH4nE5C6oTAxhBtoE2IRyjBSa62SCbyPidvls=
 github.com/adrg/xdg v0.4.0/go.mod h1:N6ag73EX4wyxeaoeHctc1mas01KZgsj5tYiAIwqJE/E=
-github.com/bayashi/actually v0.13.2 h1:Fs+Lg1ewrJJb3e6It+qb4e9DtB2zKDHhw3XUmAifQuM=
-github.com/bayashi/actually v0.13.2/go.mod h1:2N9s1BHcz5GTE3FWFEcxooI/EcANbybz9RFxoBFGo+U=
+github.com/bayashi/actually v0.23.0 h1:md0zWL5l/jcMieiAkH+7Qi6nW5iUtQfPqrr91S44e8o=
+github.com/bayashi/actually v0.23.0/go.mod h1:uYS3+pX5HPH4f1YIiWiq4hkvjZMRApsGIb93sB19aIw=
+github.com/bayashi/witness v0.0.17 h1:f8bZL+MB+06DAF14YXgHqf7IF2oepcM2ILZ2H9khXOc=
+github.com/bayashi/witness v0.0.17/go.mod h1:xxXU08y35qzkp0kDRGVYuvHB5JVxFKe6vF16puu7gEo=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
