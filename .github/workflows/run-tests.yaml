@@ -41,5 +41,12 @@ jobs:
       - name: Build
         run: go build -v ./...
 
+      - name: Install irir to color test output
+        run: |
+          go install github.com/bayashi/irir@latest
+          mkdir -p $HOME/.config/irir
+          curl -L https://bit.ly/irir-gotest-conf > $HOME/.config/irir/irir_rule.yaml
+
       - name: Test with the Go CLI
-        run: go test -v ./... -shuffle=on -timeout=3m -cover
+        shell: 'script -q -e -c "bash {0}"'
+        run: irir gotest -- go test -v ./... -shuffle=on -timeout=3m -cover
