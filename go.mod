@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/adrg/xdg v0.4.0
-	github.com/bayashi/actually v0.23.0
+	github.com/bayashi/actually v0.25.0
 	github.com/fatih/color v1.16.0
 	github.com/invopop/jsonschema v0.12.0
 	github.com/spf13/pflag v1.0.5
@@ -14,7 +14,7 @@ require (
 
 require (
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
-	github.com/bayashi/witness v0.0.17 // indirect
+	github.com/bayashi/witness v0.0.18 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
