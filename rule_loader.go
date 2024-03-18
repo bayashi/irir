@@ -50,11 +50,7 @@ func loadRule(cfp func(f string) string, ruleName string) ([]*Rule, error) {
 		if rr.Type == TYPE_REGEXP {
 			r[i].regexp = regexp.MustCompile("(" + rr.Match + ")")
 		}
-		if _, ok := palette[strings.ToLower(rr.Color)]; !ok {
-			r[i].Color = "error"
-		} else {
-			r[i].Color = strings.ToLower(rr.Color)
-		}
+		r[i].Color = strings.ToLower(rr.Color)
 	}
 
 	return r, nil

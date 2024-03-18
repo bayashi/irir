@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"strings"
+
+	"github.com/bayashi/colorpalette"
 )
 
 var zeroByte = []byte("")
@@ -34,13 +36,13 @@ func processWord(line []byte, r *Rule) ([]byte, error) {
 	switch r.Type {
 	case TYPE_MATCH:
 		if strings.Contains(strings.TrimSpace(string(line)), r.Match) {
-			coloredMatch := palette[r.Color].Sprintf(r.Match)
+			coloredMatch := colorpalette.Get(r.Color).Sprintf(r.Match)
 			lineString := strings.ReplaceAll(string(line), r.Match, coloredMatch)
 			byteString := []byte(lineString)
 			return byteString, nil
 		}
 	case TYPE_REGEXP:
-		coloredMatch := palette[r.Color].Sprintf("$1")
+		coloredMatch := colorpalette.Get(r.Color).Sprintf("$1")
 		return r.regexp.ReplaceAll(line, []byte(coloredMatch)), nil
 	default:
 		return zeroByte, fmt.Errorf("wrong type %s for target=%s", r.Type, r.Target)
@@ -53,22 +55,22 @@ func processLine(line []byte, r *Rule) ([]byte, error) {
 	switch r.Type {
 	case TYPE_MATCH:
 		if strings.Contains(strings.TrimSpace(string(line)), r.Match) {
-			coloredLine := palette[r.Color].Sprintf("%s", line)
+			coloredLine := colorpalette.Get(r.Color).Sprintf("%s", line)
 			return []byte(coloredLine), nil
 		}
 	case TYPE_REGEXP:
 		if r.regexp.Match(line) {
-			coloredLine := palette[r.Color].Sprintf("%s", line)
+			coloredLine := colorpalette.Get(r.Color).Sprintf("%s", line)
 			return []byte(coloredLine), nil
 		}
 	case TYPE_PREFIX:
 		if strings.HasPrefix(strings.TrimSpace(string(line)), r.Match) {
-			coloredLine := palette[r.Color].Sprintf("%s", line)
+			coloredLine := colorpalette.Get(r.Color).Sprintf("%s", line)
 			return []byte(coloredLine), nil
 		}
 	case TYPE_SUFFIX:
 		if strings.HasSuffix(strings.TrimSpace(string(line)), r.Match) {
-			coloredLine := palette[r.Color].Sprintf("%s", line)
+			coloredLine := colorpalette.Get(r.Color).Sprintf("%s", line)
 			return []byte(coloredLine), nil
 		}
 	default:

@@ -8,12 +8,13 @@ import (
 	"testing"
 
 	a "github.com/bayashi/actually"
+	"github.com/bayashi/colorpalette"
 )
 
 // Verify that an enum list for jsonschema on `Color` of `Rule` struct is same as palette
 func TestRuleColorEnum(t *testing.T) {
 	colors := []string{}
-	for _, c := range orderedColors {
+	for _, c := range colorpalette.List() {
 		colors = append(colors, "enum="+c)
 	}
 	expect := strings.Join(colors, ",")
