@@ -5,6 +5,7 @@ import (
 
 	"github.com/bayashi/colorpalette"
 )
+
 func dumpColorPalette() string {
 	colors := []string{}
 	for _, c := range colorpalette.List() {
