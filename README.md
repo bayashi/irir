@@ -166,7 +166,7 @@ gotest:
   target: line
 - type: prefix
   match: "FAIL"
-  color: red
+  color: bg_red
   target: line
 - type: prefix
   match: "--- SKIP"
@@ -265,7 +265,7 @@ Github Actions doesn't have TTY. If you want to use `irir` in Github Actions, Th
   run: |
     go install github.com/bayashi/irir@latest
     mkdir -p $HOME/.config/irir
-    curl -L https://raw.githubusercontent.com/bayashi/irir/1f6a6a0e4f20fba489eaa1047aea026dd0f056f3/configs/gotest.yaml > $HOME/.config/irir/irir_rule.yaml
+    curl -L https://raw.githubusercontent.com/bayashi/irir/main/configs/gotest.yaml > $HOME/.config/irir/irir_rule.yaml
 
 - name: Run tests
   shell: 'script -q -e -c "bash {0}"'
