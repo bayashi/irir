@@ -166,7 +166,7 @@ gotest:
   target: line
 - type: prefix
   match: "FAIL"
-  color: red
+  color: bg_red
   target: line
 - type: prefix
   match: "--- SKIP"
