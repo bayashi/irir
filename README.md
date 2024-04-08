@@ -91,7 +91,7 @@ Above rules have 3 ways to color as list.
 
 * `type`: This specifies how to match. It should be `match`, `prefix`, `suffix` or `regexp`. If `target` value is `word`, then you can use only `match` or `regexp`.
 * `match`: This is a string or a regexp string to match.
-* `color`: specific color name. See [the palette](https://github.com/bayashi/irir/blob/main/color_palette.go)
+* `color`: specific color name. See [the palette](https://github.com/bayashi/colorpalette/blob/main/colorpalette.go)
 * `target`: This specifies a scope of coloring. It should be `word` or `line`.
 
 ### The case of regexp type
