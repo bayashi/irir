@@ -4,7 +4,7 @@ go 1.21
 
 require (
 	github.com/adrg/xdg v0.4.0
-	github.com/bayashi/actually v0.25.0
+	github.com/bayashi/actually v0.26.0
 	github.com/fatih/color v1.16.0
 	github.com/invopop/jsonschema v0.12.0
 	github.com/spf13/pflag v1.0.5
