@@ -14,7 +14,7 @@ require (
 
 require (
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
-	github.com/bayashi/colorpalette v0.0.2
+	github.com/bayashi/colorpalette v0.0.3
 	github.com/bayashi/witness v0.0.18 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
