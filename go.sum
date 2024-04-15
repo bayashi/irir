@@ -4,8 +4,8 @@ github.com/bahlo/generic-list-go v0.2.0 h1:5sz/EEAK+ls5wF+NeqDpk5+iNdMDXrh3z3nPn
 github.com/bahlo/generic-list-go v0.2.0/go.mod h1:2KvAjgMlE5NNynlg/5iLrrCCZ2+5xWbdbCW3pNTGyYg=
 github.com/bayashi/actually v0.25.0 h1:tX2Ia4sh5LLUMGGOUBO43kG32aujynQ7NczPRRFVAZM=
 github.com/bayashi/actually v0.25.0/go.mod h1:XLALXc7wdA014GKNyOyMGp8Y0q8KD028o3WArt9Lw5U=
-github.com/bayashi/colorpalette v0.0.2 h1:WDgJCkrhCC5nlr+6jsrWZitFU/RcZ2atT1ObH1U6dys=
-github.com/bayashi/colorpalette v0.0.2/go.mod h1:b5035mgIaDywdFLZbSJEbeMQu6Pz8Gu+GcIcc4qJ4lg=
+github.com/bayashi/colorpalette v0.0.3 h1:EPdBPQfWte/IJGB/XVpoQ5yUggDz8fMcIHjWt5PUusA=
+github.com/bayashi/colorpalette v0.0.3/go.mod h1:b5035mgIaDywdFLZbSJEbeMQu6Pz8Gu+GcIcc4qJ4lg=
 github.com/bayashi/witness v0.0.18 h1:NntBW+sFL7GAgrav/4I++L9saaVK7UH5MV0v+y5bs48=
 github.com/bayashi/witness v0.0.18/go.mod h1:xxXU08y35qzkp0kDRGVYuvHB5JVxFKe6vF16puu7gEo=
 github.com/buger/jsonparser v1.1.1 h1:2PnMjfWD7wBILjqQbt530v576A/cAbQvEW9gGIpYMUs=
