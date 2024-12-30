@@ -1,3 +1,4 @@
+version: 2
 builds:
   - env:
       - CGO_ENABLED=0
@@ -20,11 +21,12 @@ changelog:
     - Merge remote-tracking branch
     - Merge branch
 brews:
-  - tap:
+  - repository:
       owner: bayashi
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
-    folder: Formula
+    license: "MIT"
+    directory: Formula
     homepage: https://github.com/bayashi/irir
     description: A filter to add colors for text lines generically from a YAML configuration file easily
     test: |
