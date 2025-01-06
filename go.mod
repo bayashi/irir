@@ -5,7 +5,7 @@ go 1.21
 require (
 	github.com/adrg/xdg v0.4.0
 	github.com/bayashi/actually v0.28.0
-	github.com/fatih/color v1.16.0
+	github.com/fatih/color v1.18.0
 	github.com/invopop/jsonschema v0.12.0
 	github.com/spf13/pflag v1.0.5
 	golang.org/x/term v0.21.0
@@ -16,7 +16,7 @@ require github.com/google/go-cmp v0.6.0 // indirect
 
 require (
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
-	github.com/bayashi/colorpalette v0.0.2
+	github.com/bayashi/colorpalette v0.0.4
 	github.com/bayashi/witness v0.0.20 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
@@ -25,5 +25,5 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
-	golang.org/x/sys v0.21.0 // indirect
+	golang.org/x/sys v0.25.0 // indirect
 )
