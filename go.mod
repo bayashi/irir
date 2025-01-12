@@ -5,7 +5,7 @@ go 1.21.11
 require (
 	github.com/adrg/xdg v0.4.0
 	github.com/bayashi/actually v0.31.0
-	github.com/fatih/color v1.16.0
+	github.com/fatih/color v1.18.0
 	github.com/invopop/jsonschema v0.12.0
 	github.com/spf13/pflag v1.0.5
 	golang.org/x/term v0.21.0
@@ -27,5 +27,5 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
-	golang.org/x/sys v0.21.0 // indirect
+	golang.org/x/sys v0.25.0 // indirect
 )
