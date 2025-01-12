@@ -1,6 +1,6 @@
 module github.com/bayashi/irir
 
-go 1.21
+go 1.21.11
 
 require (
 	github.com/adrg/xdg v0.4.0
