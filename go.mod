@@ -1,10 +1,10 @@
 module github.com/bayashi/irir
 
-go 1.21
+go 1.21.11
 
 require (
 	github.com/adrg/xdg v0.4.0
-	github.com/bayashi/actually v0.28.0
+	github.com/bayashi/actually v0.31.0
 	github.com/fatih/color v1.16.0
 	github.com/invopop/jsonschema v0.12.0
 	github.com/spf13/pflag v1.0.5
@@ -12,12 +12,14 @@ require (
 	gopkg.in/yaml.v3 v3.0.1
 )
 
-require github.com/google/go-cmp v0.6.0 // indirect
+require (
+	github.com/google/go-cmp v0.6.0 // indirect
+	github.com/yassinebenaid/godump v0.11.1 // indirect
+)
 
 require (
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
 	github.com/bayashi/colorpalette v0.0.2
-	github.com/bayashi/witness v0.0.20 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
