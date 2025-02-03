@@ -4,7 +4,7 @@ go 1.21.11
 
 require (
 	github.com/adrg/xdg v0.4.0
-	github.com/bayashi/actually v0.31.0
+	github.com/bayashi/actually v0.33.2
 	github.com/fatih/color v1.16.0
 	github.com/invopop/jsonschema v0.13.0
 	github.com/spf13/pflag v1.0.5
@@ -15,6 +15,7 @@ require (
 require (
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/yassinebenaid/godump v0.11.1 // indirect
+	google.golang.org/protobuf v1.36.2 // indirect
 )
 
 require (
