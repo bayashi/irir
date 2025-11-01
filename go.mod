@@ -1,6 +1,6 @@
 module github.com/bayashi/irir
 
-go 1.21.11
+go 1.24.0
 
 require (
 	github.com/adrg/xdg v0.4.0
@@ -8,7 +8,7 @@ require (
 	github.com/fatih/color v1.16.0
 	github.com/invopop/jsonschema v0.13.0
 	github.com/spf13/pflag v1.0.5
-	golang.org/x/term v0.29.0
+	golang.org/x/term v0.36.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
@@ -28,5 +28,5 @@ require (
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
-	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/sys v0.37.0 // indirect
 )
