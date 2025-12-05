@@ -36,7 +36,7 @@ func processWord(line []byte, r *Rule) ([]byte, error) {
 	switch r.Type {
 	case TYPE_MATCH:
 		if strings.Contains(strings.TrimSpace(string(line)), r.Match) {
-			coloredMatch := colorpalette.Get(r.Color).Sprintf(r.Match)
+			coloredMatch := colorpalette.Get(r.Color).Sprintf("%s", r.Match)
 			lineString := strings.ReplaceAll(string(line), r.Match, coloredMatch)
 			byteString := []byte(lineString)
 			return byteString, nil
